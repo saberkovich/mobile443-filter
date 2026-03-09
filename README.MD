@@ -1,3 +1,7 @@
+# mobile443-filter
+
+Фильтр 443/tcp и 443/udp по allowlist мобильных ASN РФ.
+
 ## Как это работает
 
 Скрипт собирает актуальные IPv4-префиксы по списку ASN через RIPEstat (`announced-prefixes`), загружает их в `ipset allowed_mobile_443` и навешивает `iptables`-цепочку `FILTER_MOBILE_443` на `INPUT`, `FORWARD` и `DOCKER-USER`.
@@ -80,9 +84,6 @@
 Это **mobile-focused allowlist**, а не идеальный детектор “только SIM”.  
 Часть fixed-клиентов крупных операторов (`MTS`, `Beeline`, `MegaFon`, `Rostelecom`) тоже может проходить, потому что их ASN используются не только для мобильного доступа.
 
-# mobile443-filter
-
-Фильтр 443/tcp и 443/udp по allowlist мобильных ASN РФ.
 
 ## Установка и диагностика
 ```bash
