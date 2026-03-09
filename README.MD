@@ -84,7 +84,7 @@
 
 Фильтр 443/tcp и 443/udp по allowlist мобильных ASN РФ.
 
-## Установка
+## Установка и диагностика
 ```bash
 chmod +x asn.sh
 sudo ./asn.sh install
