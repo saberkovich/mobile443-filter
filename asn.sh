@@ -443,15 +443,15 @@ find_user_by_ip() {
 
   # xray access log format: ... <IP>:<port> accepted ... email: <email>
   tail -n 50000 "$XRAY_ACCESS_LOG" 2>/dev/null \
-    | grep "$ip" \
+    | grep -Fw "$ip" \
     | grep -oP 'email:\s*\K\S+' \
     | tail -1 || true
 }
 
 extract_tg_id() {
   local email="$1"
-  # Email format: idremna_idtelegram
-  echo "$email" | cut -d'_' -f2
+  # Email format: idremna_idtelegram -> take the last part
+  echo "$email" | rev | cut -d'_' -f1 | rev
 }
 
 process_blocked() {
