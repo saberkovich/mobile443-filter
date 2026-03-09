@@ -8,7 +8,7 @@
 set -Eeuo pipefail
 
 # ─── Конфигурация ───
-REPO_RAW="https://raw.githubusercontent.com/Makhkets/mobile443-filter/refs/heads/main/asn.sh"
+REPO_RAW="https://raw.githubusercontent.com/Makhkets/mobile443-filter/refs/heads/main"
 SCRIPT_NAME="asn.sh"
 INSTALL_DIR="/tmp/mobile443-installer"
 ACTION="${1:-install}"
