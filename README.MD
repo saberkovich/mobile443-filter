@@ -21,6 +21,7 @@
 bash <(curl -Ls https://raw.githubusercontent.com/wh3r3ar3you/asn/main/install.sh)
 ```
 
+> Замените `wh3r3ar3you` на ваш GitHub username.
 
 ## 🔧 Ручная установка
 
@@ -107,6 +108,58 @@ bash <(curl -Ls https://raw.githubusercontent.com/wh3r3ar3you/asn/main/install.s
 ```
 
 ## 📱 Telegram-уведомления
+
+### ⚙️ Предварительная настройка (обязательно!)
+
+Чтобы уведомления работали, нужно включить access-лог в xray и пробросить его из Docker-контейнера на хост.
+
+#### 1. Включите логирование в конфиге xray
+
+Добавьте в конфиг xray (внутри контейнера Remnanode) секцию `log`:
+
+```json
+{
+  "log": {
+    "access": "/var/log/remnanode/access.log",
+    "loglevel": "info"
+  }
+}
+```
+
+#### 2. Пробросьте директорию логов через Docker volume
+
+Добавьте volume в `docker-compose.yml` ноды, чтобы логи были видны на хосте:
+
+```yaml
+services:
+  remnanode:
+    container_name: remnanode
+    hostname: remnanode
+    image: ghcr.io/remnawave/node:latest
+    env_file:
+      - .env
+    network_mode: host
+    restart: always
+    cap_add:
+      - NET_ADMIN
+    ulimits:
+      nofile:
+        soft: 1048576
+        hard: 1048576
+    volumes:
+      - '/var/log/remnanode:/var/log/remnanode'
+```
+
+#### 3. Перезапустите контейнер
+
+```bash
+cd /путь/к/docker-compose
+docker compose down && docker compose up -d
+```
+
+После этого файл `access.log` появится на хосте по пути `/var/log/remnanode/access.log` — скрипт найдёт его автоматически при установке.
+
+---
 
 ### Для пользователей
 Когда подключение блокируется, бот отправляет сообщение пользователю с предупреждением.
