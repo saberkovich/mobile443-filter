@@ -91,3 +91,37 @@ sudo ./asn.sh install
 ### Удаление
 sudo ./asn.sh remove
 
+## Диагностика
+
+```bash
+# Проверить, входит ли IP в allowlist
+ipset test allowed_mobile_443 1.2.3.4
+
+# Количество подсетей в allowlist
+ipset list allowed_mobile_443 | grep 'Number of entries'
+
+# Первые 50 подсетей
+ipset list allowed_mobile_443 | sed -n '/^Members:/,$p' | tail -n +2 | head -50
+
+# Счётчики ACCEPT / DROP
+iptables -L FILTER_MOBILE_443 -n -v --line-numbers
+
+# Смотреть счётчики в реальном времени
+watch -n 1 'iptables -L FILTER_MOBILE_443 -n -v --line-numbers'
+
+# Посмотреть, через какую цепочку идёт трафик
+iptables -L INPUT -n -v --line-numbers | head -30
+iptables -L FORWARD -n -v --line-numbers | head -30
+iptables -L DOCKER-USER -n -v --line-numbers
+
+# Посмотреть пакеты на 443
+tcpdump -ni any port 443
+
+# Посмотреть пакеты от конкретного IP
+tcpdump -ni any host 1.2.3.4 and port 443
+
+# Проверить обновление и таймер
+systemctl status mobile443-update.service --no-pager
+systemctl status mobile443-update.timer --no-pager
+journalctl -u mobile443-update.service -n 100 --no-pager
+journalctl -u mobile443-apply.service -n 100 --no-pager
