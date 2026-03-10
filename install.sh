@@ -2,13 +2,13 @@
 # ═══════════════════════════════════════════════════════════
 #  mobile443 installer
 #  Использование:
-#    bash <(curl -Ls https://raw.githubusercontent.com/wh3r3ar3you/mobile443-filter/refs/heads/main/install.sh)
-#    bash <(curl -Ls https://raw.githubusercontent.com/wh3r3ar3you/mobile443-filter/refs/heads/main/install.sh) remove
+#    bash <(curl -Ls https://raw.githubusercontent.com/saberkovich/mobile443-filter/refs/heads/main/install.sh)
+#    bash <(curl -Ls https://raw.githubusercontent.com/saberkovich/mobile443-filter/refs/heads/main/install.sh) remove
 # ═══════════════════════════════════════════════════════════
 set -Eeuo pipefail
 
 # ─── Конфигурация ───
-REPO_RAW="https://raw.githubusercontent.com/wh3r3ar3you/mobile443-filter/refs/heads/main"
+REPO_RAW="https://raw.githubusercontent.com/saberkovich/mobile443-filter/refs/heads/main"
 SCRIPT_NAME="asn.sh"
 INSTALL_DIR="/tmp/mobile443-installer"
 ACTION="${1:-install}"
