@@ -501,7 +501,7 @@ extract_tg_id() {
     local username
     username=$(echo "$api_response" | jq -r '.response.username // empty' 2>/dev/null)
     if [[ -n "$username" ]]; then
-      tg_id=$(echo "$username" | rev | cut -d'_' -f1 | rev)
+      tg_id=username
     fi
   else
     # Из поля telegramId
