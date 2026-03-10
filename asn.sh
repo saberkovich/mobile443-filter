@@ -213,6 +213,9 @@ install_all() {
 
 # Rostelecom
 12389
+
+# T-Mobile
+202498
 EOF
 
   # ─── common.sh ───
