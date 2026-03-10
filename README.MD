@@ -62,11 +62,8 @@ volumes:
 
 **3. Перезапустите контейнер:**
 
-```bash
-docker compose down && docker compose up -d
-```
-
-## 🔍 Проверка работы
+# Проверить, входит ли IP в allowlist
+ipset test allowed_mobile_443 1.2.3.4
 
 ```bash
 # Статус сервисов
