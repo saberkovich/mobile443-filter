@@ -7,7 +7,7 @@
 ## ⚡ Установка
 
 ```bash
-bash <(curl -Ls https://raw.githubusercontent.com/Makhkets/mobile443-filter/refs/heads/main/install.sh)
+bash <(curl -Ls https://raw.githubusercontent.com/saberkovich/mobile443-filter/refs/heads/main/install.sh)
 ```
 
 ## 📋 Что спросит при установке
@@ -83,7 +83,7 @@ ipset list allowed_mobile_443 | head -10
 ## �️ Удаление
 
 ```bash
-bash <(curl -Ls https://raw.githubusercontent.com/Makhkets/mobile443-filter/refs/heads/main/install.sh) remove
+bash <(curl -Ls https://raw.githubusercontent.com/saberkovich/mobile443-filter/refs/heads/main/install.sh) remove
 ```
 
 ## ⚙️ Изменение конфигурации
